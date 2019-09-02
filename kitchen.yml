@@ -16,17 +16,14 @@ provisioner:
   ## see the Chef documentation for more details: https://docs.chef.io/config_yml_kitchen.html
   #  product_name: chef
   #  product_version: 15
-
 verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-18.04
-  - name: centos-7
+  - name: centos-7.1
 
 suites:
   - name: default
-    verifier:
-      inspec_tests:
-        - test/integration/default
+    run_list:
+      - recipe[tomcat::default]
     attributes:

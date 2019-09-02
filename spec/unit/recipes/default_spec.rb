@@ -4,26 +4,47 @@
 #
 # Copyright:: 2019, The Authors, All Rights Reserved.
 
-require 'spec_helper'
+# require 'spec_helper'
 
-describe 'tomcat::default' do
-  context 'When all attributes are default, on Ubuntu 18.04' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'ubuntu', '18.04'
+# describe 'tomcat::default' do
+#    describe command("curl http://localhost:8080") do
+#       its(:stdout) { should match /Tomcat/ }
+#    end
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-  end
 
-  context 'When all attributes are default, on CentOS 7' do
-    # for a complete list of available platforms and versions see:
-    # https://github.com/chefspec/fauxhai/blob/master/PLATFORMS.md
-    platform 'centos', '7'
+#   describe package('java-1.7.0-openjdk-devel')  do
+#     it { should be_installed }
+#   end
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
-  end
-end
+#   describe group('tomcat') do
+#     it { should exist }
+#   end
+
+#   describe user('tomcat') do
+#     it { should exist }
+#     it { should belong_to_group 'tomcat' }
+#     it { should have_home_directory '/opt/tomcat' }
+  
+# end
+
+#require 'spec_helper'
+
+# describe 'tomcat::default' do
+#   describe command("curl http://localhost:8080") do
+#     its(:stdout) { should match /Tomcat/ }
+#   end
+# end
+
+# describe package('java-1.7.0-openjdk-devel')  do
+#   it { should be_installed }
+# end
+
+# describe group('tomcat') do
+#   it { should exist }
+# end
+
+# describe group('user') do
+#   it { should exist }
+#   it { should belong_to_group 'tomcat' }
+#   it { should have_home_directory '/opt/tomcat' }
+# end
