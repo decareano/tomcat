@@ -2,7 +2,7 @@
 # Cookbook:: tomcat
 # Recipe:: default
 #
-# Copyright:: 2019, The Authors, All Rights Reserved.
+# Copyright:: 2019, The Authors, All Rights Reserved
 
 package 'java-1.7.0-openjdk-devel'
 
@@ -25,14 +25,20 @@ directory '/opt/tomcat' do
 	# action :create
 end
 
+tomcat_dir = '/opt/tomcat'
+
 execute 'tar xvf apache-tomcat-8*tar.gz -C /opt/tomcat --strip-components=1'
 execute 'chgrp -R tomcat /opt/tomcat/conf'
 execute 'chmod g+r /opt/tomcat/conf/*'
-execute 'chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/'
+#execute 'chown -R tomcat /opt/tomcat/webapps/ /opt/tomcat/work/ /opt/tomcat/temp/ /opt/tomcat/logs/'
 execute 'systemctl daemon-reload'
 
 directory '/opt/tomcat/conf' do
-	mode '0070'
+	mode '0770'
+end
+
+%w[bin webapps work temp logs conf lib].each do |sub_dir|
+  execute "chown -R tomcat #{tomcat_dir}/#{sub_dir}"
 end
 
 template '/etc/systemd/system/tomcat.service' do

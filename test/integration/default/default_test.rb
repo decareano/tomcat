@@ -5,7 +5,7 @@
 require_relative 'spec_helper'
 
 describe command("curl http://localhost:8080") do
-  its(:stdout) { should match /Tomcat/ }
+  its('stdout') { should match /Tomcat/ }
 end
 
 
@@ -30,7 +30,7 @@ end
 
 describe file('/opt/tomcat/conf') do
 	it { should exist }
-	its('mode') { should eq 0070 }
+	its('mode') { should eq 0770 }
 end
 
 #execute 'chown -R tomcat webapps/ work/ temp/ logs/'
@@ -40,4 +40,5 @@ end
 		it { should be_owned_by 'tomcat'}
 	end
 end
+
 
