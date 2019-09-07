@@ -22,7 +22,7 @@ remote_file 'apache-tomcat-8.5.45.tar.gz' do
 end
 
 directory '/opt/tomcat' do
-	# action :create
+	action :create
 end
 
 tomcat_dir = '/opt/tomcat'
