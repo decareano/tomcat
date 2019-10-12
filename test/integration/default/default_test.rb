@@ -41,4 +41,27 @@ end
 	end
 end
 
+['net-tools', 'httpd'].each do |pg|
+	describe package(pg) do
+		it { should be_installed }
+	end
+end
 
+describe sshd_config do
+	its('Protocol') { should cmp 2 }
+end
+
+describe sshd_config do
+	its('AcceptEnv') { should include('LANG LC_CTYPE LC_NUMERIC LC_TIME LC_COLLATE LC_MONETARY LC_MESSAGES') }
+end
+
+describe sshd_config do
+  its('Port') { should cmp  22 }
+  its('UsePAM') { should eq 'yes' }
+  its('ListenAddress') { should eq nil }
+  its('HostKey') { should eq [
+      '/etc/ssh/ssh_host_rsa_key',
+      '/etc/ssh/ssh_host_dsa_key',
+      '/etc/ssh/ssh_host_ecdsa_key',
+    ] }
+end
